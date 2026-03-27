@@ -1,0 +1,28 @@
+stages:
+   - information
+   - quality
+   - build
+
+variables:
+  GIT_STRATEGY: clone
+  TIMEOUT: 10m
+
+versionInfo:
+   stage: information
+   script:
+      - make version
+
+styleCheck:
+   stage: quality
+   script:
+      - make style
+
+staticAnalysis:
+   stage: quality
+   script:
+      - make static
+
+buildProject:
+   stage: build
+   script:
+      - make cardGame
